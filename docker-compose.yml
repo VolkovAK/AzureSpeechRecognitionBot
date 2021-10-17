@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+    bot_service:
+        image: asrbot:latest
+        container_name: asrbot_container
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        restart: always
+        network_mode: host
+        volumes:
+            - "./auth.json:/app/auth.json"
+        secrets:
+            - azure_key
+            - telegram_key
+              # command: /bin/bash -c "sleep 100000"
+        command: python3 ASR_bot.py
+
+
+secrets:
+    azure_key:
+        file: ./azure.key
+    telegram_key:
+        file: ./telegram.key
