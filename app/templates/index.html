@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transcribator</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/index.css') }}">
+</head>
+<body>
+    <div class="upload_section">
+        <form method="POST" enctype="multipart/form-data" class="upload_form">
+            <input type="file" name="file" class="filename_select">
+            <input type="submit" value="Upload" class="submit_button">
+        </form>
+    </div>
+    <div class="table_section">
+        <table>
+            <tr>
+                <th>Submit date</th>
+                <th>Filename</th>
+                <th>Duration</th>
+                <th>Status</th>
+		<th>&#128128;</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                 <td class="submit_datetime">{{item.submit_datetime}}</td>
+                 <td class="name">{{item.name}}</td>
+                 <td class="duration">{{item.duration}}</td>
+                 {% if 'ok' in item.name %}
+                 <td class="status"><a href="/download/{{item.name}}">Download</a></td>
+                 {% else %}
+                 <td class="status">{{item.status}}</td>
+                 {% endif %}
+		 <td class="delete"><a href="/delete/{{item.name}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

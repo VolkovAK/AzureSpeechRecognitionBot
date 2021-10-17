@@ -1,6 +1,7 @@
 *.key
 auth.json
-
+pg_data/
+*swp
 
 
 # Byte-compiled / optimized / DLL files

@@ -1,25 +1,69 @@
 version: "3.9"
 
 services:
-    bot_service:
-        image: asrbot:latest
-        container_name: asrbot_container
-        build:
-            context: ./
-            dockerfile: Dockerfile
+    redis:
+        image: redis
+        container_name: asr_redis
         restart: always
-        network_mode: host
+
+    database: 
+        image: postgres
+        container_name: asr_postgres
+        environment:         
+            POSTGRES_DB: asrdb
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
         volumes:
-            - "./auth.json:/app/auth.json"
+            - ./pg_data/:/var/lib/postgresql/data/
+        restart: always
+
+    celery:
+        image: asr:latest
+        container_name: asr_celery
+        build:
+            context: ./app
+            dockerfile: ../Dockerfile
+        restart: always
+        depends_on:
+            - database
+            - redis
+        ports:
+            - 443:443
+        volumes:
+            - ./app/uploads:/app/uploads
+            - ./app/results:/app/results
+        environment:
+            CELERY_BROKER_URL: redis://redis
+            CELERY_RESULT_BACKEND: redis://redis
+            LC_ALL: C.UTF-8
+            LANG: C.UTF-8
+        command: celery -A tasks:celery_app worker --loglevel=info
+
+    flask_server:
+        image: asr:latest
+        container_name: asr_flask
+        build:
+            context: ./app
+            dockerfile: ../Dockerfile
+        # network_mode: host
+        ports:
+            - 80:5000
+        volumes:
+            - ./app/uploads:/app/uploads
+            - ./app/results/:/app/results/
+        environment:
+            CELERY_BROKER_URL: redis://redis #localhost:6379
+            CELERY_RESULT_BACKEND: redis://redis
+            PYTHONUNBUFFERED: 0
+        depends_on:
+            - redis
+            - celery
+            - database
         secrets:
             - azure_key
-            - telegram_key
-              # command: /bin/bash -c "sleep 100000"
-        command: python3 ASR_bot.py
+        command: python3 asr_app.py
 
 
 secrets:
     azure_key:
         file: ./azure.key
-    telegram_key:
-        file: ./telegram.key
