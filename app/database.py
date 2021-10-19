@@ -52,6 +52,12 @@ def create_record(filename: str, duration: str, status: str) -> None:
             cursor.execute("INSERT INTO asr_data (submit_datetime, name, duration, status) VALUES (%s, %s, %s, %s)", args)
             conn.commit()
 
+def delete_record(id_pk: int) -> None:
+    with psycopg2.connect(**connection_args) as conn:
+        with conn.cursor() as cursor:
+            cursor.execute("DELETE FROM asr_data WHERE id=%s", (id_pk,))
+            conn.commit()
+
 
 def get_all_records_sort_date() -> list:
     with psycopg2.connect(**connection_args) as conn:

@@ -44,11 +44,15 @@ def transcribe(file_path: str, subscription: str):
         if status is "ok":
             database.update_field(basename, "duration", duration)
             txt_path = os.path.join("results", os.path.splitext(basename)[0] + ".txt")
-            full_text, rec_status = recognize(wav_path, txt_path, subscription)
+            full_text, rec_status = "test", True
+            # full_text, rec_status = recognize(wav_path, subscription)
+            with open(txt_path, 'w') as f:
+                f.write(full_text)
 
             if rec_status is False:
                 print("Some AZURE error occured!")
                 status = "recognition error"
+
 
     database.update_field(basename, "status", status)
     try:
@@ -130,8 +134,5 @@ def recognize(wav_path: str, txt_path: str, subscription: str) -> (str, bool):
         return '', False
 
     full_text = ''.join(full_text)
-    with open(txt_path, 'w') as f:
-        f.write(full_text)
-        
     return full_text, True
 

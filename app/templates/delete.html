@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transcribator</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/index.css') }}">
+</head>
+<body>
+    <div class="delete_confirmation">
+        <div class="del_info">Do you really want to delete {{ filename }}?</div>
+        <a href="/delete/{{id_pk}}" class="del_yes">Yes</a>
+        <a href="/" class="del_no">No</a>
+    </div>
+</body>
+</html>

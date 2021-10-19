@@ -18,19 +18,19 @@
                 <th>Filename</th>
                 <th>Duration</th>
                 <th>Status</th>
-		<th>&#128128;</th>
+                <th>&#128128;</th>
             </tr>
             {% for item in items %}
             <tr>
                  <td class="submit_datetime">{{item.submit_datetime}}</td>
                  <td class="name">{{item.name}}</td>
                  <td class="duration">{{item.duration}}</td>
-                 {% if 'ok' in item.name %}
-                 <td class="status"><a href="/download/{{item.name}}">Download</a></td>
+                 {% if 'ok' in item.status %}
+                 <td class="status"><a href="/download/{{item.txt_name}}" download>Download</a></td>
                  {% else %}
                  <td class="status">{{item.status}}</td>
                  {% endif %}
-		 <td class="delete"><a href="/delete/{{item.name}}">Delete</a></td>
+                 <td class="delete"><a href="/try_delete/{{item.txt_name}}/{{item.id_pk}}">Delete</a></td>
             </tr>
             {% endfor %}
         </table>
