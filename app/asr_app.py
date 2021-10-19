@@ -79,9 +79,9 @@ def index() -> Response:
             uploaded_file.save(save_path)
             print(filename)
             celery_app.send_task("transcribe", args=[save_path, flask_app.config["AZURE_SUB"]])
+            time.sleep(1)
             return redirect(request.url)
-    print(request.method)
-    return jsonify("OK")
+    return redirect(request.url)
 
 
 def main():

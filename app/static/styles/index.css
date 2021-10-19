@@ -1,21 +1,161 @@
 body {
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+  */ 
     background-image: url("/static/images/wallpaper.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    font-family: "Pixelated MS Sans Serif", Arial;
 }
 
-.upload_section {
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr {
+    font-size: 1.2vw;
+}
+tr:nth-child(even) {
+    background-color: #d0ae46dd;
+}
+tr:nth-child(odd) {
+    background-color: #e0be56dd;
+}
+
+th {
+    background-color: #f09e00;
+    font-size: 1.5vw;
+    padding: 0.5vw;
+    text-align: left;
+    border-bottom: #715900 solid 2px;
+    border-right: #715900 solid 2px;
+}
+
+td {
+    padding: 0.5vw;
+    border: black solid 1px;
+}
+
+.section {
     margin: 2vw;
+    background-color: #e0be56dd;
 }
 
-.upload_form {
+.blocks_border {
+    border-radius: 0.5vw;
+    border: #715900 solid 3px;
+}
+
+.block {
     padding: 20px;
-    background-color: #d6d5d57d;
-    border-radius: 1vw;
+    font-size: 1.5vw;
+}
+
+.info_text {
+    padding: 0.5vw;
 }
 
 .filename_select {
+    background-color: #d0ae46dd;
+    border-radius: 0.5vw;
+    font-size: 1.5vw;
+    width: 74%;
+}
 
+.select_input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit_button {
+    width: 25%;
+}
+
+.my_button, 
+.filename_select::-webkit-file-upload-button {
+    font-size: 1.5vw;
+    background-color: #f09e00;
+    border: #715900 outset 3px;
+    padding: 0.5vw 1vw;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 0.5vw;
+}
+
+.small_a_button:hover,
+.my_button:hover,
+.filename_select:hover::-webkit-file-upload-button {
+    background-color: #ffae10;
+}
+.small_a_button:active,
+.my_button:active,
+.filename_select:active::-webkit-file-upload-button {
+    background-color: #ffbe20;
+    border-style: inset;
+}
+
+.th_date {
+    width: 15%;
+}
+.th_duration {
+    width: 8%;
+}
+.th_status {
+    width: 8%;
+}
+.th_delete {
+    width: 3%;
+    text-align: center;
+}
+
+.del_td,
+.download_td {
+    text-align: center;
+}
+
+.small_a_button {
+    padding: 0.2vw;
+    text-decoration: none;
+    color: black;
+    background-color: #3dd000;
+    border: #715900 outset 2px;
+    border-radius: 0.5vw;
+}
+
+.delete {
+    background-color: #dd0000;
+}
+.delete:hover,
+.del_yes:hover {
+    background-color: #ff0000;
+}
+.delete:active,
+.del_yes:active {
+    background-color: #ff640a;
+}
+
+
+.del_info {
+    margin: 1vw;
+}
+.del_block {
+    display: flex;
+    padding: 1vw;
+    justify-content: space-evenly;
+}
+.del_yes {
+    background: #dd0000;
+    color: black;
+    text-decoration: none;
+}
+.del_no {
+    color: black;
+    text-decoration: none;
 }

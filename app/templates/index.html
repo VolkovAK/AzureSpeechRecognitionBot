@@ -3,36 +3,44 @@
 <head>
     <title>Transcribator</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/index.css') }}">
+    /* For M.I.A.*/
 </head>
 <body>
-    <div class="upload_section">
-        <form method="POST" enctype="multipart/form-data" class="upload_form">
-            <input type="file" name="file" class="filename_select">
-            <input type="submit" value="Upload" class="submit_button">
+    <div class="section blocks_border">
+        <form method="POST" enctype="multipart/form-data" class="block">
+            <div class="info_text">
+                After clicking "upload" please wait for a new row to appear in the table
+            </div>
+            <div class="select_input">
+                <input type="file" name="file" class="filename_select">
+                <input type="submit" value=">>> UPLOAD <<<" class="submit_button my_button">
+            </div>
         </form>
     </div>
-    <div class="table_section">
+    <div class="section">
         <table>
-            <tr>
-                <th>Submit date</th>
-                <th>Filename</th>
-                <th>Duration</th>
-                <th>Status</th>
-                <th>&#128128;</th>
-            </tr>
-            {% for item in items %}
-            <tr>
-                 <td class="submit_datetime">{{item.submit_datetime}}</td>
-                 <td class="name">{{item.name}}</td>
-                 <td class="duration">{{item.duration}}</td>
-                 {% if 'ok' in item.status %}
-                 <td class="status"><a href="/download/{{item.txt_name}}" download>Download</a></td>
-                 {% else %}
-                 <td class="status">{{item.status}}</td>
-                 {% endif %}
-                 <td class="delete"><a href="/try_delete/{{item.txt_name}}/{{item.id_pk}}">Delete</a></td>
-            </tr>
-            {% endfor %}
+            <tbody class="blocks_border">
+                <tr>
+                    <th class="th_date">Submit date</th>
+                    <th class="th_name">Filename</th>
+                    <th class="th_duration">Duration</th>
+                    <th class="th_status">Status</th>
+                    <th class="th_delete">&#128128;</th>
+                </tr>
+                {% for item in items %}
+                <tr>
+                     <td class="submit_datetime">{{item.submit_datetime}}</td>
+                     <td class="name">{{item.name}}</td>
+                     <td class="duration">{{item.duration}}</td>
+                     {% if 'ok' in item.status %}
+                     <td class="download_td"><a href="/download/{{item.txt_name}}" download class="small_a_button">Download</a></td>
+                     {% else %}
+                     <td class="status">{{item.status}}</td>
+                     {% endif %}
+                     <td class="del_td"><a href="/try_delete/{{item.txt_name}}/{{item.id_pk}}" class="delete small_a_button">X</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 </body>
