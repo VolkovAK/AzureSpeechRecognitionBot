@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 
 services:
     redis:
@@ -61,9 +61,12 @@ services:
             - database
         secrets:
             - azure_key
+            - auth_key
         command: python3 asr_app.py
 
 
 secrets:
     azure_key:
         file: ./azure.key
+    auth_key:
+        file: ./auth.key
