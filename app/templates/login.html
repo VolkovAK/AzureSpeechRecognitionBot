@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transcribator</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/index.css') }}">
+    <!-- For M.I.A. --!>
+</head>
+<body>
+    <div class="section block blocks_border">
+        <div class="info_text">
+        {% if status is defined %}
+        Wrong password! Try again:
+        {% else %}
+        Enter password:
+        {% endif %}
+        </div>
+        <form method="POST" autocomplete="off">
+            <input type="password" name="pwd" class="pwd_input">
+            <input type="submit" class="my_button">
+        </form>
+    </div>
+</body>
+</html>

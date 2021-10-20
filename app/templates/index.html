@@ -3,7 +3,7 @@
 <head>
     <title>Transcribator</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/index.css') }}">
-    /* For M.I.A.*/
+    <!-- For M.I.A. --!>
 </head>
 <body>
     <div class="section blocks_border">
@@ -33,7 +33,7 @@
                      <td class="name">{{item.name}}</td>
                      <td class="duration">{{item.duration}}</td>
                      {% if 'ok' in item.status %}
-                     <td class="download_td"><a href="/download/{{item.txt_name}}" download class="small_a_button">Download</a></td>
+                     <td class="download_td"><a href="/download/{{item.txt_name}}" download class="download small_a_button">Download</a></td>
                      {% else %}
                      <td class="status">{{item.status}}</td>
                      {% endif %}

@@ -23,34 +23,37 @@ tr {
     font-size: 1.2vw;
 }
 tr:nth-child(even) {
-    background-color: #d0ae46dd;
+    background-color: #bcc0ce80;
 }
 tr:nth-child(odd) {
-    background-color: #e0be56dd;
+    background-color: #d4d6da80;
+}
+tr:hover {
+    background-color: #c3d3ea;
 }
 
 th {
-    background-color: #f09e00;
+    background-color: #a2b2d8;
     font-size: 1.5vw;
     padding: 0.5vw;
     text-align: left;
-    border-bottom: #715900 solid 2px;
-    border-right: #715900 solid 2px;
+    border-bottom: #8c90a8 solid 2px;
+    border-right: #8c90a8 solid 2px;
 }
 
 td {
-    padding: 0.5vw;
+    padding: 0.8vw;
     border: black solid 1px;
 }
 
 .section {
     margin: 2vw;
-    background-color: #e0be56dd;
+    background-color: #c6cbdadd;
 }
 
 .blocks_border {
     border-radius: 0.5vw;
-    border: #715900 solid 3px;
+    border: #8c90a8 solid 3px;
 }
 
 .block {
@@ -63,7 +66,6 @@ td {
 }
 
 .filename_select {
-    background-color: #d0ae46dd;
     border-radius: 0.5vw;
     font-size: 1.5vw;
     width: 74%;
@@ -81,8 +83,8 @@ td {
 .my_button, 
 .filename_select::-webkit-file-upload-button {
     font-size: 1.5vw;
-    background-color: #f09e00;
-    border: #715900 outset 3px;
+    background-color: #a2b2d8;
+    border: #8c90a8 outset 3px;
     padding: 0.5vw 1vw;
     white-space: nowrap;
     cursor: pointer;
@@ -92,12 +94,12 @@ td {
 .small_a_button:hover,
 .my_button:hover,
 .filename_select:hover::-webkit-file-upload-button {
-    background-color: #ffae10;
+    background-color: #b2c2e8;
 }
 .small_a_button:active,
 .my_button:active,
 .filename_select:active::-webkit-file-upload-button {
-    background-color: #ffbe20;
+    background-color: #c2d2f8;
     border-style: inset;
 }
 
@@ -124,14 +126,11 @@ td {
     padding: 0.2vw;
     text-decoration: none;
     color: black;
-    background-color: #3dd000;
-    border: #715900 outset 2px;
+    background-color: #a2b2d8;
+    border: #8c90a8 outset 2px;
     border-radius: 0.5vw;
 }
 
-.delete {
-    background-color: #dd0000;
-}
 .delete:hover,
 .del_yes:hover {
     background-color: #ff0000;
@@ -141,6 +140,12 @@ td {
     background-color: #ff640a;
 }
 
+.download:hover {
+    background-color: #5df05d;
+}
+.download:active {
+    background-color: #66ff66;
+}
 
 .del_info {
     margin: 1vw;
@@ -158,4 +163,10 @@ td {
 .del_no {
     color: black;
     text-decoration: none;
+}
+
+
+.pwd_input {
+    font-size: 1.5vw;
+    padding: 0.5vw 1vw;
 }
