@@ -63,6 +63,10 @@ def login():
         return resp
 
 
+@flask_app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(os.path.join(flask_app.root_path, "static"), "favicon.ico")
+
 @flask_app.route('/download/<path:filename>', methods=['GET', 'POST'])
 @login_check
 def download(filename):

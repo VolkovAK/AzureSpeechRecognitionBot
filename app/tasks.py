@@ -43,9 +43,9 @@ def transcribe(file_path: str, subscription: str):
 
         if status is "ok":
             database.update_field(basename, "duration", duration)
+            database.update_field(basename, "status", "processing")
             txt_path = os.path.join("results", os.path.splitext(basename)[0] + ".txt")
-            full_text, rec_status = "test", True
-            # full_text, rec_status = recognize(wav_path, subscription)
+            full_text, rec_status = recognize(wav_path, subscription)
             with open(txt_path, 'w') as f:
                 f.write(full_text)
 
@@ -84,7 +84,7 @@ def ffmpegit(file_path: str, wav_path: str) -> (str, bool):
 
 
 
-def recognize(wav_path: str, txt_path: str, subscription: str) -> (str, bool):
+def recognize(wav_path: str, subscription: str) -> (str, bool):
     print(subscription)
     print(wav_path)
     speech_config = speechsdk.SpeechConfig(subscription=subscription, region="eastus")
