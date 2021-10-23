@@ -14,21 +14,22 @@ services:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: postgres
         volumes:
-            - ./pg_data/:/var/lib/postgresql/data/
+            - ./pg_data/data/:/var/lib/postgresql/data/
         restart: always
 
-    celery:
+    app:
         image: asr:latest
-        container_name: asr_celery
+        container_name: asr_app
         build:
-            context: ./app
-            dockerfile: ../Dockerfile
+            context: ./
+            dockerfile: ./Dockerfile
         restart: always
         depends_on:
             - database
             - redis
         ports:
             - 443:443
+            - 80:5000
         volumes:
             - ./app/uploads:/app/uploads
             - ./app/results:/app/results
@@ -37,32 +38,11 @@ services:
             CELERY_RESULT_BACKEND: redis://redis
             LC_ALL: C.UTF-8
             LANG: C.UTF-8
-        command: celery -A tasks:celery_app worker --loglevel=info
-
-    flask_server:
-        image: asr:latest
-        container_name: asr_flask
-        build:
-            context: ./app
-            dockerfile: ../Dockerfile
-        # network_mode: host
-        ports:
-            - 80:5000
-        volumes:
-            - ./app/uploads:/app/uploads
-            - ./app/results/:/app/results/
-        environment:
-            CELERY_BROKER_URL: redis://redis #localhost:6379
-            CELERY_RESULT_BACKEND: redis://redis
             PYTHONUNBUFFERED: 0
-        depends_on:
-            - redis
-            - celery
-            - database
         secrets:
             - azure_key
             - auth_key
-        command: python3 asr_app.py
+        command: ./run.sh
 
 
 secrets:

@@ -7,19 +7,19 @@ RUN apt update && apt install -y \
   python3-pip \
   libpq-dev \
   libssl-dev \
-  bmon \
-  slurm \
-  tcptrack \
-  iftop \
   iptraf-ng \
-  net-tools
+  net-tools \
+  supervisor
 
 RUN pip3 install azure-cognitiveservices-speech flask celery[redis] psycopg2
 
 ENV C_FORCE_ROOT true
 
-COPY ./ /app/
+COPY ./app/ /app/
 WORKDIR /app/
 
+# COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./run.sh /app/run.sh
 
+# ENTRYPOINT ["/usr/bin/supervisord"]
 
