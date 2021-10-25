@@ -42,7 +42,8 @@ services:
         secrets:
             - azure_key
             - auth_key
-        command: ./run.sh
+        command: /usr/bin/supervisord
+        # command: ./run.sh
 
 
 secrets:
