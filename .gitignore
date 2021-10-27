@@ -2,6 +2,7 @@
 auth.json
 pg_data/
 *swp
+.idea/
 
 
 # Byte-compiled / optimized / DLL files

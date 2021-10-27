@@ -1,10 +1,22 @@
 # AzureSpeechRecognitionSite
 Site for recognizing speech from video or audio  
 
---------------
-Initially it was Telegram bot, but unfortunately telegram bots can't handle files bigger then 20 MB.  
-So it will be website instead of tg bot.
+-----------
+#### Technologies used
 
+1) Python 3 - as main programming language
+2) Flask - for system management via web-page
+3) Celery - for asynchronous tasks
+4) Postgres - as database with results for processed files
+5) Docker, docker-compose - for deployment
+6) html, css (no js) - for web-page
+
+
+#### Usage
+
+You need to create at project root directory two files:
+- azure.key - with your Microsoft Azure Speech-to-Text subscription key,
+- auth.key - this string will be used as password for site login.
 
 
 -----------
