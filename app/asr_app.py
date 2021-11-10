@@ -24,7 +24,7 @@ from database import (
 )
 
 
-ALLOWED_EXTENSIONS = ["mov", "mp4", "mkv", "mp3", "acc", "ogg", "m4a", "wav"]
+ALLOWED_EXTENSIONS = ["mov", "mp4", "mkv", "mp3", "acc", "ogg", "m4a", "wav", "mpeg"]
 flask_app = Flask("main_app")
 flask_app.config['UPLOAD_FOLDER'] = "./uploads/"
 flask_app.config['SESSION_TYPE'] = 'filesystem'

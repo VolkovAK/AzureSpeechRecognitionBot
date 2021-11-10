@@ -10,6 +10,7 @@ Site for recognizing speech from video or audio
 4) Postgres - as database with results for processed files
 5) Docker, docker-compose - for deployment
 6) html, css (no js) - for web-page
+7) Azure Speech-to-Text API - for actual recognition
 
 
 #### Usage
