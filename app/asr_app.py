@@ -113,14 +113,19 @@ def index() -> Response:
         if uploaded_file.filename == '':
             print('No selected file')
             return redirect(request.url)
-        if uploaded_file and allowed_file(uploaded_file.filename):
-            filename = secure_filename(uploaded_file.filename)
-            save_path = os.path.join(flask_app.config['UPLOAD_FOLDER'], filename)
-            uploaded_file.save(save_path)
-            print(filename)
-            celery_app.send_task("transcribe", args=[save_path, flask_app.config["AZURE_SUB"]])
-            time.sleep(1)
-            return redirect(request.url)
+        if uploaded_file:
+            if allowed_file(uploaded_file.filename):
+                filename = secure_filename(uploaded_file.filename)
+                save_path = os.path.join(flask_app.config['UPLOAD_FOLDER'], filename)
+                uploaded_file.save(save_path)
+                print(filename)
+                celery_app.send_task("transcribe", args=[save_path, flask_app.config["AZURE_SUB"]])
+                time.sleep(1)
+                return redirect(request.url)
+            else:
+                print("\n\n\nXXXXXXXXXXXXXXXX\n\n")
+                print(f"Unsupported filetype for {uploaded_file.filename}!")
+                print("\n\n\nXXXXXXXXXXXXXXXX\n\n")
     return redirect(request.url)
 
 
